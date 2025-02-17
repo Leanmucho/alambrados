@@ -50,7 +50,7 @@ const Servicios = () => {
             </Grid>
             <Grid item xs={12} md={6}>
               <Card>
-                <CardMedia component="img" image="./../../public/alambrados3.jpg" alt="Alambrado Perimetral" />
+                <CardMedia component="img" image="/alambrados3.jpg" alt="Alambrado Perimetral" />
               </Card>
             </Grid>
           </Grid>

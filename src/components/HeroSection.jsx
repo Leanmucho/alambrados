@@ -3,9 +3,9 @@ import { Box, Typography, Button } from "@mui/material";
 import { motion, AnimatePresence } from "framer-motion";
 
 const images = [
-  { src: "./../../public/alambrados1.jpg", text: "CERCOS PERIMETRALES" },
-  { src: "./../../public/alambrados2.jpg", text: "POSTES" },
-  { src: "./../../public/alambrados3.jpg", text: "ALAMBRADOS" },
+  { src: "/alambrados1.jpg", text: "CERCOS PERIMETRALES" },
+  { src: "/alambrados2.jpg", text: "POSTES" },
+  { src: "/alambrados3.jpg", text: "ALAMBRADOS" },
 ];
 
 const texts = ["CERCOS PERIMETRALES", "POSTES", "ALAMBRADOS"];

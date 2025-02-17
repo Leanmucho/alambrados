@@ -22,17 +22,26 @@ const Footer = () => {
   return (
     <Box>
       {/* Sección Principal del Footer */}
-      <Box sx={{ backgroundColor: "#181818", color: "white", py: 6 }} id="footer">
+      <Box
+        sx={{ backgroundColor: "#181818", color: "white", py: 6 }}
+        id="footer"
+      >
         <Box sx={{ maxWidth: "1170px", margin: "0 auto", px: 4 }}>
           <Grid container spacing={4}>
             {/* Sección Empresa */}
             <Grid item xs={12} md={4}>
-              <Typography variant="h5" fontStyle="italic" fontWeight="bold" sx={{ fontFamily: "serif", color: "#C0C0C0" }}>
-                Alambrados <span style={{ color: "#2E7D32" }}>D’anilo</span>
+              <Typography
+                variant="h5"
+                fontStyle="italic"
+                fontWeight="bold"
+                sx={{ fontFamily: "serif", color: "#C0C0C0" }}
+              >
+                Alambrados <span style={{ color: "#2E7D32" }}>SA</span>
               </Typography>
               <Typography variant="body2" sx={{ mt: 2, color: "#C0C0C0" }}>
-                Somos una empresa líder en el mercado dedicada a la venta y colocación de Alambrados, postes y cercos perimetrales.
-                Estamos ubicados en Canning, zona Sur del Gran Bs. As.
+                Somos una empresa líder en el mercado dedicada a la venta y
+                colocación de Alambrados, postes y cercos perimetrales. Estamos
+                ubicados en Canning, zona Sur del Gran Bs. As.
               </Typography>
             </Grid>
 
@@ -45,11 +54,28 @@ const Footer = () => {
                 { text: "Inicio", icon: <Home fontSize="small" /> },
                 { text: "Postes de hormigón", icon: <Room fontSize="small" /> },
                 { text: "Galería", icon: <PhotoLibrary fontSize="small" /> },
-                { text: "Contacto", icon: <Mail fontSize="small" /> },
+                { text: "Contacto", icon: <Mail fontSize="small" /> }
               ].map((item) => (
-                <Typography key={item.text} variant="body2" sx={{ display: "flex", alignItems: "center", color: "#C0C0C0", mb: 1 }}>
+                <Typography
+                  key={item.text}
+                  variant="body2"
+                  sx={{
+                    display: "flex",
+                    alignItems: "center",
+                    color: "#C0C0C0",
+                    mb: 1
+                  }}
+                >
                   {item.icon}
-                  <Link href="#" underline="none" sx={{ ml: 1, color: "#C0C0C0", "&:hover": { color: "#2E7D32" } }}>
+                  <Link
+                    href="#"
+                    underline="none"
+                    sx={{
+                      ml: 1,
+                      color: "#C0C0C0",
+                      "&:hover": { color: "#2E7D32" }
+                    }}
+                  >
                     {item.text}
                   </Link>
                 </Typography>
@@ -65,13 +91,19 @@ const Footer = () => {
                 <strong>Dirección:</strong> Av. inventada 629, , Ezeiza, Bs. As.
               </Typography>
               <Typography variant="body2" sx={{ color: "#C0C0C0" }}>
-                <strong>Teléfono:</strong>  6666-6666 | 15 5554-5550
+                <strong>Teléfono:</strong> 6666-6666 | 15 5554-5550
               </Typography>
               <Typography variant="body2" sx={{ color: "#C0C0C0" }}>
                 <strong>E-mail:</strong> alambrasa@hotmail.com
               </Typography>
               <Box sx={{ mt: 2 }}>
-                <IconButton sx={{ color: "white", backgroundColor: "#2E7D32", "&:hover": { backgroundColor: "#1B5E20" } }}>
+                <IconButton
+                  sx={{
+                    color: "white",
+                    backgroundColor: "#2E7D32",
+                    "&:hover": { backgroundColor: "#1B5E20" }
+                  }}
+                >
                   <Facebook />
                 </IconButton>
               </Box>
@@ -88,11 +120,15 @@ const Footer = () => {
       </Box>
 
       {/* Botón flotante de WhatsApp */}
-      <Box sx={{ position: "fixed", bottom: 20, right: 20 }}>
+      <Box sx={{ position: "fixed", bottom: 20, right: 20, zIndex: 10 }}>
         <IconButton
           href="https://wa.me/116888888"
           target="_blank"
-          sx={{ backgroundColor: "#25D366", color: "white", "&:hover": { backgroundColor: "#1EBE50" } }}
+          sx={{
+            backgroundColor: "#25D366",
+            color: "white",
+            "&:hover": { backgroundColor: "#1EBE50" }
+          }}
         >
           <WhatsApp fontSize="large" />
         </IconButton>
@@ -103,7 +139,11 @@ const Footer = () => {
         <Box sx={{ position: "fixed", bottom: 20, right: 80 }}>
           <IconButton
             onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-            sx={{ backgroundColor: "#2E7D32", color: "white", "&:hover": { backgroundColor: "#1B5E20" } }}
+            sx={{
+              backgroundColor: "#2E7D32",
+              color: "white",
+              "&:hover": { backgroundColor: "#1B5E20" }
+            }}
           >
             <ExpandLess fontSize="large" />
           </IconButton>

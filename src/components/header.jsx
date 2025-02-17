@@ -1,12 +1,24 @@
-import { useState } from 'react';
-import { AppBar, Toolbar, Typography, Button, IconButton, Box, useMediaQuery, useTheme, Menu, MenuItem } from '@mui/material';
-import MenuIcon from '@mui/icons-material/Menu';
+import { useState } from "react";
+import {
+  AppBar,
+  Toolbar,
+  Typography,
+  Button,
+  IconButton,
+  Box,
+  useMediaQuery,
+  useTheme,
+  Menu,
+  MenuItem
+} from "@mui/material";
+import MenuIcon from "@mui/icons-material/Menu";
 
 function Header() {
   const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down('md'));
+  const isMobile = useMediaQuery(theme.breakpoints.down("md"));
   const [anchorEl, setAnchorEl] = useState(null);
-  const [activeLink, setActiveLink] = useState('inicio'); // Estado para rastrear el enlace activo
+  const [productMenu, setProductMenu] = useState(null);
+  const [activeLink, setActiveLink] = useState("inicio");
 
   const handleMenuOpen = (event) => {
     setAnchorEl(event.currentTarget);
@@ -17,27 +29,27 @@ function Header() {
   };
 
   const handleLinkClick = (link) => {
-    setActiveLink(link); // Actualiza el enlace activo
+    setActiveLink(link);
   };
 
   return (
     <AppBar
       position="fixed"
       sx={{
-        backgroundColor: 'rgba(0, 0, 0, 0.5)', // Fondo negro semitransparente
-        width: '100%',
-        height: '80px', // Aumentar el height del Header
+        backgroundColor: "rgba(0, 0, 0, 0.5)",
+        width: "100%",
+        height: "80px"
       }}
     >
-      <Toolbar sx={{ height: '100%' }}> {/* Ajustar el height del Toolbar */}
+      <Toolbar sx={{ height: "100%" }}>
         <Box
           sx={{
             maxWidth: 1170,
-            width: '100%',
-            margin: '0 auto',
-            display: 'flex',
-            alignItems: 'center', // Centrar verticalmente
-            height: '100%', // Asegurar que ocupe todo el height del Toolbar
+            width: "100%",
+            margin: "0 auto",
+            display: "flex",
+            alignItems: "center",
+            height: "100%"
           }}
         >
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
@@ -45,67 +57,97 @@ function Header() {
           </Typography>
 
           {!isMobile ? (
-            <Box sx={{ display: 'flex', gap: 2 }}>
-              <Button
-                color="inherit"
-                href="#inicio"
-                onClick={() => handleLinkClick('inicio')}
+            <Box sx={{ display: "flex", gap: 3 }}>
+              {["inicio", "servicios", "productos", "galeria", "contacto"].map(
+                (item) =>
+                  item !== "productos" && ( // Evita que "Productos" se renderice aquí
+                    <Button
+                      key={item}
+                      color="inherit"
+                      href={`#${item}`}
+                      onClick={() => handleLinkClick(item)}
+                      sx={{
+                        color: "white",
+                        textTransform: "none",
+                        fontSize: "16px",
+                        fontWeight: "bold",
+                        "&:hover, &.active": {
+                          color: "#2E7D32"
+                        }
+                      }}
+                      className={activeLink === item ? "active" : ""}
+                    >
+                      {item.charAt(0).toUpperCase() + item.slice(1)}
+                    </Button>
+                  )
+              )}
+
+              {/* Menú desplegable para "Productos" */}
+              <Box
                 sx={{
-                  backgroundColor: activeLink === 'inicio' ? 'rgba(255, 255, 255, 0.2)' : 'transparent', // Cambia el color si está activo
-                  '&:hover': {
-                    backgroundColor: 'rgba(255, 255, 255, 0.2)', // Cambia el color al hacer hover
-                  },
-                  padding: '8px 16px', // Aumentar el padding para un mejor aspecto
+                  position: "relative",
+                  "&:hover > div": { display: "block" } // Muestra el menú al hacer hover
                 }}
               >
-                Inicio
-              </Button>
-              <Button
-                color="inherit"
-                href="#servicios"
-                onClick={() => handleLinkClick('servicios')}
-                sx={{
-                  backgroundColor: activeLink === 'servicios' ? 'rgba(255, 255, 255, 0.2)' : 'transparent',
-                  '&:hover': {
-                    backgroundColor: 'rgba(255, 255, 255, 0.2)',
-                  },
-                  padding: '8px 16px',
-                }}
-              >
-                Servicios
-              </Button>
-              <Button
-                color="inherit"
-                href="#nosotros"
-                onClick={() => handleLinkClick('nosotros')}
-                sx={{
-                  backgroundColor: activeLink === 'nosotros' ? 'rgba(255, 255, 255, 0.2)' : 'transparent',
-                  '&:hover': {
-                    backgroundColor: 'rgba(255, 255, 255, 0.2)',
-                  },
-                  padding: '8px 16px',
-                }}
-              >
-                Nosotros
-              </Button>
-              <Button
-                color="inherit"
-                href="#contacto"
-                onClick={() => handleLinkClick('contacto')}
-                sx={{
-                  backgroundColor: activeLink === 'contacto' ? 'rgba(255, 255, 255, 0.2)' : 'transparent',
-                  '&:hover': {
-                    backgroundColor: 'rgba(255, 255, 255, 0.2)',
-                  },
-                  padding: '8px 16px',
-                }}
-              >
-                Contacto
-              </Button>
+                <Button
+                  color="inherit"
+                  sx={{
+                    color: "white",
+                    textTransform: "none",
+                    fontSize: "16px",
+                    fontWeight: "bold",
+                    "&:hover, &.active": {
+                      color: "#2E7D32"
+                    }
+                  }}
+                  className={activeLink === "productos" ? "active" : ""}
+                >
+                  Productos
+                </Button>
+
+                {/* Menú flotante de productos */}
+                <Box
+                  sx={{
+                    display: "none",
+                    position: "absolute",
+                    top: "100%",
+                    left: 0,
+                    backgroundColor: "white",
+                    boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.2)",
+                    borderRadius: "4px",
+                    zIndex: 10,
+                    "&:hover": { display: "block" } // Mantiene abierto si el mouse sigue encima
+                  }}
+                  onMouseLeave={() => setProductMenu(null)} // Oculta al salir
+                >
+                  <MenuItem
+                    onClick={() => handleLinkClick("postes")}
+                    sx={{
+                      color: "black",
+                      "&:hover": { backgroundColor: "#2E7D32", color: "white" }
+                    }}
+                  >
+                    Postes de Hormigón
+                  </MenuItem>
+                  <MenuItem
+                    onClick={() => handleLinkClick("rollos")}
+                    sx={{
+                      color: "black",
+                      "&:hover": { backgroundColor: "#2E7D32", color: "white" }
+                    }}
+                  >
+                    Rollos de Tejido
+                  </MenuItem>
+                </Box>
+              </Box>
             </Box>
           ) : (
             <>
-              <IconButton color="inherit" aria-label="menu" onClick={handleMenuOpen}>
+              <IconButton
+                color="inherit"
+                aria-label="menu"
+                onClick={handleMenuOpen}
+              >
                 <MenuIcon />
               </IconButton>
               <Menu
@@ -113,66 +155,37 @@ function Header() {
                 open={Boolean(anchorEl)}
                 onClose={handleMenuClose}
               >
-                <MenuItem
-                  onClick={() => {
-                    handleMenuClose();
-                    handleLinkClick('inicio');
-                  }}
-                  href="#inicio"
-                  sx={{
-                    backgroundColor: activeLink === 'inicio' ? 'rgba(255, 255, 255, 0.2)' : 'transparent',
-                    '&:hover': {
-                      backgroundColor: 'rgba(255, 255, 255, 0.2)',
-                    },
-                  }}
-                >
-                  Inicio
-                </MenuItem>
-                <MenuItem
-                  onClick={() => {
-                    handleMenuClose();
-                    handleLinkClick('servicios');
-                  }}
-                  href="#servicios"
-                  sx={{
-                    backgroundColor: activeLink === 'servicios' ? 'rgba(255, 255, 255, 0.2)' : 'transparent',
-                    '&:hover': {
-                      backgroundColor: 'rgba(255, 255, 255, 0.2)',
-                    },
-                  }}
-                >
-                  Servicios
-                </MenuItem>
-                <MenuItem
-                  onClick={() => {
-                    handleMenuClose();
-                    handleLinkClick('nosotros');
-                  }}
-                  href="#nosotros"
-                  sx={{
-                    backgroundColor: activeLink === 'nosotros' ? 'rgba(255, 255, 255, 0.2)' : 'transparent',
-                    '&:hover': {
-                      backgroundColor: 'rgba(255, 255, 255, 0.2)',
-                    },
-                  }}
-                >
-                  Nosotros
-                </MenuItem>
-                <MenuItem
-                  onClick={() => {
-                    handleMenuClose();
-                    handleLinkClick('contacto');
-                  }}
-                  href="#contacto"
-                  sx={{
-                    backgroundColor: activeLink === 'contacto' ? 'rgba(255, 255, 255, 0.2)' : 'transparent',
-                    '&:hover': {
-                      backgroundColor: 'rgba(255, 255, 255, 0.2)',
-                    },
-                  }}
-                >
-                  Contacto
-                </MenuItem>
+                {[
+                  "inicio",
+                  "servicios",
+                  "productos",
+                  "galeria",
+                  "contacto"
+                ].map((item) =>
+                  item !== "productos" ? (
+                    <MenuItem
+                      key={item}
+                      onClick={() => {
+                        handleMenuClose();
+                        handleLinkClick(item);
+                      }}
+                    >
+                      {item.charAt(0).toUpperCase() + item.slice(1)}
+                    </MenuItem>
+                  ) : (
+                    <>
+                      <MenuItem disabled sx={{ fontWeight: "bold" }}>
+                        Productos
+                      </MenuItem>
+                      <MenuItem onClick={() => handleLinkClick("postes")}>
+                        Postes de Hormigón
+                      </MenuItem>
+                      <MenuItem onClick={() => handleLinkClick("rollos")}>
+                        Rollos de Tejido
+                      </MenuItem>
+                    </>
+                  )
+                )}
               </Menu>
             </>
           )}
