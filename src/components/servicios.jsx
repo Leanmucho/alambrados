@@ -12,7 +12,7 @@ const Servicios = () => {
           <Button variant="contained" sx={{ mt: 2, backgroundColor: "white", color: "#2E7D32" }}>
             Consulte por su presupuesto
           </Button>
-        </Box>
+        </Box> 
       </Box>
 
       {/* Sección "Sobre nosotros" con fondo blanco ocupando todo el ancho */}

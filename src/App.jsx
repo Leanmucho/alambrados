@@ -12,7 +12,7 @@ function App() {
     <div>
       <ThemeProvider theme={theme}>
         <Header />
-        <HeroSection />
+        <HeroSection /> 
         <Servicios />
         <Nosotros />
         <Footer />

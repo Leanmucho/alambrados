@@ -6,7 +6,7 @@ const images = [
   { src: "/alambrados1.jpg", text: "CERCOS PERIMETRALES" },
   { src: "/alambrados2.jpg", text: "POSTES" },
   { src: "/alambrados3.jpg", text: "ALAMBRADOS" },
-];
+]; 
 
 const texts = ["CERCOS PERIMETRALES", "POSTES", "ALAMBRADOS"];
 

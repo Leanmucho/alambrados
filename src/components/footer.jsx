@@ -35,7 +35,7 @@ const Footer = () => {
                 fontStyle="italic"
                 fontWeight="bold"
                 sx={{ fontFamily: "serif", color: "#C0C0C0" }}
-              >
+              > 
                 Alambrados <span style={{ color: "#2E7D32" }}>SA</span>
               </Typography>
               <Typography variant="body2" sx={{ mt: 2, color: "#C0C0C0" }}>

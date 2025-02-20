@@ -16,7 +16,7 @@ const Nosotros = () => {
           display: "flex",
           flexDirection: "column",
           justifyContent: "center",
-          alignItems: "center",
+          alignItems: "center", 
           px: 2,
           color: "white"
         }}

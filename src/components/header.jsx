@@ -36,7 +36,7 @@ function Header() {
     <AppBar
       position="fixed"
       sx={{
-        backgroundColor: "rgba(0, 0, 0, 0.5)",
+        backgroundColor: "rgba(0, 0, 0, 0.7)",
         width: "100%",
         height: "80px"
       }}

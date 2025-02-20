@@ -23,4 +23,4 @@ export const theme = createTheme({
       secondary: "#2E7D32", // Verde oscuro para texto secundario
     },
   },
-});
+}); 
